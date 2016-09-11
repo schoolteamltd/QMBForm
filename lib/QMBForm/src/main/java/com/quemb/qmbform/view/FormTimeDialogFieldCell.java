@@ -1,10 +1,10 @@
 package com.quemb.qmbform.view;
 
-import com.quemb.qmbform.descriptor.RowDescriptor;
-
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.widget.TimePicker;
+
+import com.quemb.qmbform.descriptor.RowDescriptor;
 
 import java.util.Calendar;
 
@@ -31,7 +31,7 @@ public class FormTimeDialogFieldCell extends FormTimeFieldCell implements
     public void onCellSelected() {
         super.onCellSelected();
 
-        TimePickerDialog dialog = new TimePickerDialog(getContext(), this, getCalendar().get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), true);
+        TimePickerDialog dialog = new TimePickerDialog(getContext(), this, getCalendar().get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), false);
         dialog.show();
 
     }

@@ -1,10 +1,10 @@
 package com.quemb.qmbform.descriptor;
 
+import android.content.Context;
+
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.annotation.FormElement;
 import com.quemb.qmbform.annotation.FormValidator;
-
-import android.content.Context;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -153,7 +153,11 @@ public class RowDescriptor<T> extends FormItemDescriptor {
     }
 
     public Object getValueData() {
-        return mValue.getValue();
+        if (mValue != null) {
+            return mValue.getValue();
+        } else {
+            return null;
+        }
     }
 
     public Boolean getRequired() {

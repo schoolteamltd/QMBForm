@@ -12,6 +12,7 @@ public class SectionDescriptor extends FormItemDescriptor {
     private FormDescriptor mFormDescriptor;
     private ArrayList<RowDescriptor> mRows;
     private Boolean mMultivalueSection = false;
+    private Boolean mCanAddValue = true;
 
     public static SectionDescriptor newInstance(String tag) {
 
@@ -92,12 +93,13 @@ public class SectionDescriptor extends FormItemDescriptor {
     }
 
     private void removeRowAtIndex(int index) {
-        RowDescriptor rowDescriptor = mRows.get(index);
-        mRows.remove(index);
-        if (getFormDescriptor() != null) {
-            getFormDescriptor().didRemoveRow(rowDescriptor, this);
+        if (index > -1 && index < mRows.size()) {
+            RowDescriptor rowDescriptor = mRows.get(index);
+            mRows.remove(index);
+            if (getFormDescriptor() != null) {
+                getFormDescriptor().didRemoveRow(rowDescriptor, this);
+            }
         }
-
     }
 
     public boolean hasTitle() {
@@ -127,6 +129,14 @@ public class SectionDescriptor extends FormItemDescriptor {
 
     public void setMultivalueSection(Boolean multivalueSection) {
         mMultivalueSection = multivalueSection;
+    }
+
+    public void setCanAddValue(Boolean mCanAddValue) {
+        this.mCanAddValue = mCanAddValue;
+    }
+
+    public Boolean canAddValue() {
+        return mCanAddValue;
     }
 
     public List getRowValues() {
