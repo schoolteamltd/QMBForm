@@ -1,5 +1,12 @@
 package com.quemb.qmbform;
 
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
 import com.quemb.qmbform.adapter.FormAdapter;
 import com.quemb.qmbform.descriptor.FormDescriptor;
 import com.quemb.qmbform.descriptor.FormItemDescriptor;
@@ -9,13 +16,6 @@ import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 import com.quemb.qmbform.view.Cell;
-
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 /**
  * Created by tonimoeckel on 15.07.14.
@@ -32,8 +32,11 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
 
     }
 
-
     public void setup(FormDescriptor formDescriptor, final ListView listView, Activity activity) {
+        setup(formDescriptor, listView, activity, true);
+    }
+
+    public void setup(FormDescriptor formDescriptor, final ListView listView, Activity activity, boolean enableSectionSeparator) {
 
         Context context = activity;
 
@@ -42,7 +45,7 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
         mFormDescriptor.setOnFormRowChangeListener(this);
         mFormDescriptor.setOnFormRowValueChangedListener(this);
 
-        final FormAdapter adapter = FormAdapter.newInstance(mFormDescriptor, context);
+        final FormAdapter adapter = FormAdapter.newInstance(mFormDescriptor, context, enableSectionSeparator);
         listView.setAdapter(adapter);
         listView.setDividerHeight(1);
         listView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);

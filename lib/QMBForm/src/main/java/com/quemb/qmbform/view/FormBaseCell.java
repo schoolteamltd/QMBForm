@@ -11,11 +11,16 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.quemb.qmbform.R;
+import com.quemb.qmbform.descriptor.CellDescriptor;
+import com.quemb.qmbform.descriptor.FormItemDescriptor;
 import com.quemb.qmbform.descriptor.OnFormRowValueChangedListener;
 import com.quemb.qmbform.descriptor.OnValueChangeListener;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
 import com.quemb.qmbform.descriptor.Value;
+import com.quemb.qmbform.interfaces.MultiValueListener;
+
+import java.util.HashMap;
 
 /**
  * Created by tonimoeckel on 14.07.14.
@@ -26,6 +31,7 @@ public abstract class FormBaseCell extends Cell {
     private static final int REMOVE_BUTTON_ID = R.id.end;
     private static final int ADD_BUTTON_ID = R.id.beginning;
 
+    private MultiValueListener multiValueListener;
 
     private LinearLayout mMultiValueWrapper;
 
@@ -47,13 +53,20 @@ public abstract class FormBaseCell extends Cell {
                 }
             });
         }
-
-
     }
 
     protected ViewGroup getSuperViewForLayoutInflation() {
 
         if (getRowDescriptor().getSectionDescriptor() != null && this.getRowDescriptor().getSectionDescriptor().isMultivalueSection()) {
+
+            FormItemDescriptor itemDescriptor = getFormItemDescriptor();
+            if (itemDescriptor != null) {
+                HashMap<String,Object> cellConfig = itemDescriptor.getCellConfig();
+                if (cellConfig != null && cellConfig.containsKey(CellDescriptor.MULTI_VALUE_LISTENER)) {
+                    multiValueListener = (MultiValueListener) cellConfig.get(CellDescriptor.MULTI_VALUE_LISTENER);
+                }
+            }
+
             LinearLayout linearLayout = createMultiValueWrapper();
             addView(linearLayout);
             return linearLayout;
@@ -84,12 +97,22 @@ public abstract class FormBaseCell extends Cell {
             @Override
             public void onClick(View v) {
 
-                RowDescriptor rowDescriptor = getRowDescriptor();
+                Runnable callback = new Runnable() {
+                    @Override
+                    public void run() {
+                        RowDescriptor rowDescriptor = getRowDescriptor();
 
-                SectionDescriptor sectionDescriptor = rowDescriptor.getSectionDescriptor();
-                sectionDescriptor.removeRow(rowDescriptor);
-                sectionDescriptor.getFormDescriptor().getOnFormRowValueChangedListener().onValueChanged(rowDescriptor, rowDescriptor.getValue(), null);
+                        SectionDescriptor sectionDescriptor = rowDescriptor.getSectionDescriptor();
+                        sectionDescriptor.removeRow(rowDescriptor);
+                        sectionDescriptor.getFormDescriptor().getOnFormRowValueChangedListener().onValueChanged(rowDescriptor, rowDescriptor.getValue(), null);
+                    }
+                };
 
+                if (multiValueListener != null) {
+                    multiValueListener.onDeleteButtonClicked(getRowDescriptor(), callback);
+                } else {
+                    callback.run();
+                }
             }
         });
         linearLayout.addView(deleteButton);

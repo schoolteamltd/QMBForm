@@ -271,6 +271,7 @@ public class RowDescriptor<T> extends FormItemDescriptor {
         String ts = tsLong.toString();
         RowDescriptor newInstance = RowDescriptor.newInstance(rowDescriptor.getTag() + "_" + ts, rowDescriptor.getRowType());
         newInstance.setDataSource(rowDescriptor.getDataSource());
+        newInstance.setTitle(rowDescriptor.getTitle());
         return newInstance;
     }
 

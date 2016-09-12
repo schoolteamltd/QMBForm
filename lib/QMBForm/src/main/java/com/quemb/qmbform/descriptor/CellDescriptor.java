@@ -34,5 +34,7 @@ public class CellDescriptor
     public static final String TIME_PICKER_HOUR_INTERVAL = "FORM_TIME_PICKER_HOUR_INTERVAL";
     public static final String TIME_PICKER_MINUTE_INTERVAL = "FORM_TIME_PICKER_MINUTE_INTERVAL";
 
+    // MultiValue Listener
+    public static final String MULTI_VALUE_LISTENER = "FORM_MULTI_VALUE_LISTENER";
 
 }
