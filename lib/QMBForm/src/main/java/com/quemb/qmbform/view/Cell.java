@@ -1,18 +1,19 @@
 package com.quemb.qmbform.view;
 
-import com.quemb.qmbform.descriptor.CellDescriptor;
-import com.quemb.qmbform.descriptor.FormItemDescriptor;
-
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.StyleRes;
+import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.quemb.qmbform.descriptor.CellDescriptor;
+import com.quemb.qmbform.descriptor.FormItemDescriptor;
 
 import java.util.HashMap;
 
@@ -25,8 +26,12 @@ public abstract class Cell extends LinearLayout {
 
     private View mDividerView;
 
+    protected FragmentActivity mActivity;
+
     public Cell(Context context, FormItemDescriptor formItemDescriptor) {
         super(context);
+        mActivity = (FragmentActivity) context;
+
         setFormItemDescriptor(formItemDescriptor);
 
         init();

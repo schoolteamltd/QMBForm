@@ -118,19 +118,19 @@ public abstract class FormBaseCell extends Cell {
         linearLayout.addView(addButton);
 
         SectionDescriptor sectionDescriptor = getRowDescriptor().getSectionDescriptor();
-        int index = sectionDescriptor.getIndexOfRowDescriptor(getRowDescriptor());
-        if (index == sectionDescriptor.getRowCount() - 1) {
-            addButton.setVisibility(VISIBLE);
-            deleteButton.setVisibility(GONE);
+
+        if (this.getRowDescriptor().getSectionDescriptor().canAddValue()) {
+            int index = sectionDescriptor.getIndexOfRowDescriptor(getRowDescriptor());
+            if (index == sectionDescriptor.getRowCount() - 1) {
+                addButton.setVisibility(VISIBLE);
+                deleteButton.setVisibility(GONE);
+            } else {
+                addButton.setVisibility(GONE);
+                deleteButton.setVisibility(VISIBLE);
+            }
         } else {
             addButton.setVisibility(GONE);
             deleteButton.setVisibility(VISIBLE);
-        }
-
-        if (this.getRowDescriptor().getSectionDescriptor().canAddValue()) {
-            addButton.setVisibility(VISIBLE);
-        } else {
-            addButton.setVisibility(GONE);
         }
 
         mMultiValueWrapper = linearLayout;

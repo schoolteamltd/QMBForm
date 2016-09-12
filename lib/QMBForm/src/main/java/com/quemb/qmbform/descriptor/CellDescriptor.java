@@ -25,4 +25,14 @@ public class CellDescriptor
 
     public static final String COLOR_LABEL_DISABLED = "FORM_COLOR_LABEL_DISABLED";    // value is color as Integer.valueOf(OxAARRGGBB)
     public static final String COLOR_VALUE_DISABLED = "FORM_COLOR_VALUE_DISABLED";    // value is color as Integer.valueOf(OxAARRGGBB)
+
+    // Date And Time Related Settings
+
+    public static final String DATE_PICKER_MIN_DATE = "FORM_DATE_PICKER_MIN_DATE";
+    public static final String DATE_PICKER_MAX_DATE = "FORM_DATE_PICKER_MAX_DATE";
+
+    public static final String TIME_PICKER_HOUR_INTERVAL = "FORM_TIME_PICKER_HOUR_INTERVAL";
+    public static final String TIME_PICKER_MINUTE_INTERVAL = "FORM_TIME_PICKER_MINUTE_INTERVAL";
+
+
 }
