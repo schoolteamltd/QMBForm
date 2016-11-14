@@ -81,5 +81,4 @@ public class FormDateDialogFieldCell extends FormDateFieldCell implements DatePi
 
         onDateChanged(date);
     }
-
 }

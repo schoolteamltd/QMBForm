@@ -148,6 +148,11 @@ public class FormDescriptor {
         }
     }
 
+    protected void didChangedRow(RowDescriptor rowDescriptor, SectionDescriptor sectionDescriptor) {
+        if (mOnFormRowChangeListener != null) {
+            mOnFormRowChangeListener.onRowChanged(rowDescriptor, sectionDescriptor);
+        }
+    }
 
     protected OnFormRowChangeListener getOnFormRowChangeListener() {
         return mOnFormRowChangeListener;

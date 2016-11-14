@@ -104,7 +104,9 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
     public void onRowAdded(RowDescriptor rowDescriptor, SectionDescriptor sectionDescriptor) {
         updateRows();
         if (mOnFormRowChangeListener != null) {
-            mOnFormRowChangeListener.onRowAdded(rowDescriptor, sectionDescriptor);
+            if (rowDescriptor != null) {
+                mOnFormRowChangeListener.onRowAdded(rowDescriptor, sectionDescriptor);
+            }
         }
     }
 
@@ -112,7 +114,9 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
     public void onRowRemoved(RowDescriptor rowDescriptor, SectionDescriptor sectionDescriptor) {
         updateRows();
         if (mOnFormRowChangeListener != null) {
-            mOnFormRowChangeListener.onRowRemoved(rowDescriptor, sectionDescriptor);
+            if (rowDescriptor != null) {
+                mOnFormRowChangeListener.onRowRemoved(rowDescriptor, sectionDescriptor);
+            }
         }
     }
 
@@ -120,7 +124,9 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
     public void onRowChanged(RowDescriptor rowDescriptor, SectionDescriptor sectionDescriptor) {
         updateRows();
         if (mOnFormRowChangeListener != null) {
-            mOnFormRowChangeListener.onRowChanged(rowDescriptor, sectionDescriptor);
+            if (rowDescriptor != null) {
+                mOnFormRowChangeListener.onRowChanged(rowDescriptor, sectionDescriptor);
+            }
         }
     }
 

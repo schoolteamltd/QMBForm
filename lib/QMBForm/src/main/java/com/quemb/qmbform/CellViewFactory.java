@@ -1,8 +1,13 @@
 package com.quemb.qmbform;
 
+import android.content.Context;
+import android.os.Build;
+import android.util.Log;
+
 import com.quemb.qmbform.descriptor.FormItemDescriptor;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
+import com.quemb.qmbform.descriptor.SectionFooterDescriptor;
 import com.quemb.qmbform.view.Cell;
 import com.quemb.qmbform.view.FormBaseCell;
 import com.quemb.qmbform.view.FormBooleanFieldCell;
@@ -42,11 +47,8 @@ import com.quemb.qmbform.view.FormTextPickerDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeInlineFieldCell;
 import com.quemb.qmbform.view.SectionCell;
+import com.quemb.qmbform.view.SectionFooterCell;
 import com.quemb.qmbform.view.SeparatorSectionCell;
-
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -125,6 +127,11 @@ public class CellViewFactory {
 
             SectionCell sectionCell = new SectionCell(context, (SectionDescriptor) descriptor);
             rowView = sectionCell;
+
+        } else if (descriptor instanceof SectionFooterDescriptor) {
+
+            SectionFooterCell footerCell = new SectionFooterCell(context, (SectionFooterDescriptor) descriptor);
+            rowView = footerCell;
 
         } else if (descriptor instanceof RowDescriptor) {
             RowDescriptor row = (RowDescriptor) descriptor;

@@ -9,6 +9,7 @@ public class CellDescriptor
     // TextAppearance style ID
 
     public static final String APPEARANCE_SECTION    = "FORM_APPEARANCE_SECTION";     // value is an attribute ID as Integer.valueOf(R.attr.xxx)
+    public static final String APPEARANCE_FOOTER   = "FORM_APPEARANCE_FOOTER";     // value is an attribute ID as Integer.valueOf(R.attr.xxx)
     public static final String APPEARANCE_TEXT_LABEL = "FORM_APPEARANCE_TEXT_LABEL";  // value is an attribute ID as Integer.valueOf(R.attr.xxx)
     public static final String APPEARANCE_TEXT_VALUE = "FORM_APPEARANCE_TEXT_VALUE";  // value is an attribute ID as Integer.valueOf(R.attr.xxx)
     public static final String APPEARANCE_BUTTON     = "FORM_APPEARANCE_BUTTON";      // value is an attribute ID as Integer.valueOf(R.attr.xxx)
@@ -20,6 +21,8 @@ public class CellDescriptor
 
     public static final String COLOR_LABEL = "FORM_COLOR_LABEL";    // value is color as Integer.valueOf(OxAARRGGBB)
     public static final String COLOR_VALUE = "FORM_COLOR_VALUE";    // value is color as Integer.valueOf(OxAARRGGBB)
+    public static final String SECTION_COLOR_LABEL = "FORM_SECTION_COLOR_LABEL";    // value is color as Integer.valueOf(OxAARRGGBB)
+    public static final String FOOTER_COLOR_LABEL = "FORM_FOOTER_COLOR_LABEL";    // value is color as Integer.valueOf(OxAARRGGBB)
 
     // Disabled text colors
 

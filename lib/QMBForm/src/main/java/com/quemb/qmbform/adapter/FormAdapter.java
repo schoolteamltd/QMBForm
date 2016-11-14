@@ -10,6 +10,7 @@ import com.quemb.qmbform.descriptor.FormDescriptor;
 import com.quemb.qmbform.descriptor.FormItemDescriptor;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.SectionDescriptor;
+import com.quemb.qmbform.descriptor.SectionFooterDescriptor;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,10 @@ public class FormAdapter extends BaseAdapter {
 
             mItems.addAll(sectionDescriptor.getRows());
 
+            if (sectionDescriptor.hasFooterTitle()) {
+                mItems.add(sectionDescriptor.getFooterDescriptor());
+            }
+
             if (getEnableSectionSeparator() && sectionCount < mFormDescriptor.getSections().size()) {
 
                 FormItemDescriptor itemDescriptor = mItems.get(mItems.size() - 1);
@@ -79,6 +84,14 @@ public class FormAdapter extends BaseAdapter {
         return CellViewFactory.getInstance().createViewForFormItemDescriptor(mContext, getItem(position));
     }
 
+    @Override
+    public boolean isEnabled(int position) {
+        if (getItem(position) instanceof SectionDescriptor ||
+            getItem(position) instanceof SectionFooterDescriptor) {
+            return false;
+        }
+        return super.isEnabled(position);
+    }
 
     public Boolean getEnableSectionSeparator() {
         return mEnableSectionSeparator;

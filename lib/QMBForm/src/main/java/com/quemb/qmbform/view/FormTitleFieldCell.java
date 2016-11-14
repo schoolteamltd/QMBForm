@@ -1,16 +1,17 @@
 package com.quemb.qmbform.view;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
+
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.descriptor.CellDescriptor;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 
-import android.content.Context;
-import android.widget.TextView;
-
 /**
  * Created by tonimoeckel on 15.07.14.
  */
-public class FormTitleFieldCell extends FormBaseCell {
+public class FormTitleFieldCell extends FormBaseCell implements View.OnClickListener {
     private TextView mTextView;
 
     public FormTitleFieldCell(Context context,
@@ -22,6 +23,7 @@ public class FormTitleFieldCell extends FormBaseCell {
     protected void init() {
         super.init();
         mTextView = (TextView) findViewById(R.id.textView);
+        mTextView.setOnClickListener(this);
 
         setStyleId(mTextView, CellDescriptor.APPEARANCE_TEXT_LABEL, CellDescriptor.COLOR_LABEL);
     }
@@ -47,5 +49,10 @@ public class FormTitleFieldCell extends FormBaseCell {
 
     public TextView getTextView() {
         return mTextView;
+    }
+
+    @Override
+    public void onClick(View v) {
+        onCellSelected();
     }
 }

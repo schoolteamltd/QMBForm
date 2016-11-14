@@ -53,6 +53,8 @@ public abstract class FormBaseCell extends Cell {
                 }
             });
         }
+
+        setBackgroundResource(R.drawable.row_background);
     }
 
     protected ViewGroup getSuperViewForLayoutInflation() {
@@ -165,7 +167,7 @@ public abstract class FormBaseCell extends Cell {
     public boolean shouldAddDivider() {
 
         RowDescriptor rowDescriptor = (RowDescriptor) getFormItemDescriptor();
-        if (rowDescriptor.isLastRowInSection())
+        if (rowDescriptor.isLastRowInSection() && !rowDescriptor.getSectionDescriptor().hasFooterTitle())
             return false;
 
         return super.shouldAddDivider();
