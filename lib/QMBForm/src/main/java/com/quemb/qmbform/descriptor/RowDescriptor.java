@@ -71,6 +71,8 @@ public class RowDescriptor<T> extends FormItemDescriptor {
     public static final String FormRowDescriptorTypeSectionSeperator = "sectionSeperator";
     public static final String FormRowDescriptorTypeHtmlVertical = "htmlVertical";
 
+    public static final String FormRowDescriptorTypeTextField = "textField";
+
     private String mRowType;
     private Value<T> mValue;
     /**
