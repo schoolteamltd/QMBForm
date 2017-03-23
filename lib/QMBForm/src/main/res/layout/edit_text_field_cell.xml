@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:background="@null"
-        android:ellipsize="end"
         android:gravity="right"
         android:inputType="text"/>
 

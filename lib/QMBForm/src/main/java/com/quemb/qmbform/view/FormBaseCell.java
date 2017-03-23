@@ -54,12 +54,23 @@ public abstract class FormBaseCell extends Cell {
             });
         }
 
-        setBackgroundResource(R.drawable.row_background);
+
+        HashMap<String,Object> cellConfig = getRowDescriptor().getCellConfig();
+        if (cellConfig != null && cellConfig.containsKey(CellDescriptor.BACKGROUND_COLOR)) {
+            Object config = cellConfig.get(CellDescriptor.BACKGROUND_COLOR);
+            if (config instanceof Integer) {
+                setBackgroundColor((Integer) config);
+            }
+        } else {
+            setBackgroundResource(R.drawable.row_background);
+        }
     }
 
     protected ViewGroup getSuperViewForLayoutInflation() {
 
-        if (getRowDescriptor().getSectionDescriptor() != null && this.getRowDescriptor().getSectionDescriptor().isMultivalueSection()) {
+        if (getRowDescriptor().getSectionDescriptor() != null &&
+            this.getRowDescriptor().getSectionDescriptor().isMultivalueSection() &&
+            !this.getRowDescriptor().getDisabled()) {
 
             FormItemDescriptor itemDescriptor = getFormItemDescriptor();
             if (itemDescriptor != null) {
@@ -73,6 +84,7 @@ public abstract class FormBaseCell extends Cell {
             addView(linearLayout);
             return linearLayout;
         }
+
         return super.getSuperViewForLayoutInflation();
     }
 
@@ -83,6 +95,9 @@ public abstract class FormBaseCell extends Cell {
         linearLayout.setId(R.id.wrap_content);
         linearLayout.setFocusable(false);
         linearLayout.setFocusableInTouchMode(false);
+
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        params.setMargins(10, 0, 10, 0);
 
         ImageButton deleteButton = new ImageButton(getContext());
         deleteButton.setId(REMOVE_BUTTON_ID);
@@ -117,7 +132,8 @@ public abstract class FormBaseCell extends Cell {
                 }
             }
         });
-        linearLayout.addView(deleteButton);
+
+        linearLayout.addView(deleteButton, params);
 
         ImageButton addButton = new ImageButton(getContext());
         addButton.setId(ADD_BUTTON_ID);
@@ -140,7 +156,8 @@ public abstract class FormBaseCell extends Cell {
 
             }
         });
-        linearLayout.addView(addButton);
+
+        linearLayout.addView(addButton, params);
 
         SectionDescriptor sectionDescriptor = getRowDescriptor().getSectionDescriptor();
 

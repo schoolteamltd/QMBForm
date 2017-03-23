@@ -106,7 +106,6 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
 
     @Override
     public void onCellSelected() {
-        super.onCellSelected();
         mEditView.requestFocus();
         InputMethodManager imm = (InputMethodManager) mActivity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mEditView, InputMethodManager.SHOW_IMPLICIT);

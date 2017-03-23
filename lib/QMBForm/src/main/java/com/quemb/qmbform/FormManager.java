@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -40,7 +41,7 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
 
         Context context = activity;
 
-//        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         mFormDescriptor = formDescriptor;
         mFormDescriptor.setOnFormRowChangeListener(this);
         mFormDescriptor.setOnFormRowValueChangedListener(this);

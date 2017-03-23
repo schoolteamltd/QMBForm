@@ -40,4 +40,5 @@ public class CellDescriptor
     // MultiValue Listener
     public static final String MULTI_VALUE_LISTENER = "FORM_MULTI_VALUE_LISTENER";
 
+    public static final String BACKGROUND_COLOR = "BACKGROUND_COLOR";
 }
