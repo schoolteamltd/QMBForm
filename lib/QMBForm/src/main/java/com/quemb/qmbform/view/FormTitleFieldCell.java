@@ -53,7 +53,7 @@ public class FormTitleFieldCell extends FormBaseCell implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if (getRowDescriptor().getDisabled()) {
+        if (!getRowDescriptor().getDisabled()) {
             onCellSelected();
         }
     }

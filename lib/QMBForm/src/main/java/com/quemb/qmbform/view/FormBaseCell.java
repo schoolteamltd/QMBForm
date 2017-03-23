@@ -2,9 +2,6 @@ package com.quemb.qmbform.view;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatDrawableManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -96,18 +93,15 @@ public abstract class FormBaseCell extends Cell {
         linearLayout.setFocusable(false);
         linearLayout.setFocusableInTouchMode(false);
 
+        float scale = getResources().getDisplayMetrics().density;
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        params.setMargins(10, 0, 10, 0);
+        params.setMargins((int) (5 * scale + 0.5f), 0, 0, 0);
 
         ImageButton deleteButton = new ImageButton(getContext());
         deleteButton.setId(REMOVE_BUTTON_ID);
         deleteButton.setFocusableInTouchMode(false);
         deleteButton.setFocusable(false);
-
-        Drawable removeIcon = AppCompatDrawableManager.get().getDrawable(getContext(), R.drawable.ic_action_remove);
-        removeIcon.setColorFilter(0xffff0000, PorterDuff.Mode.MULTIPLY);
-
-        deleteButton.setImageDrawable(removeIcon);
+        deleteButton.setImageResource(R.drawable.ic_action_remove);
         deleteButton.setBackgroundColor(Color.TRANSPARENT);
         deleteButton.setVisibility(VISIBLE);
         deleteButton.setOnClickListener(new OnClickListener() {
@@ -139,12 +133,7 @@ public abstract class FormBaseCell extends Cell {
         addButton.setId(ADD_BUTTON_ID);
         addButton.setFocusableInTouchMode(false);
         addButton.setFocusable(false);
-
-        Drawable addIcon = AppCompatDrawableManager.get().getDrawable(getContext(), R.drawable.ic_action_new);
-        addIcon.setColorFilter(0xff00ff00, PorterDuff.Mode.MULTIPLY);
-
-
-        addButton.setImageDrawable(addIcon);
+        addButton.setImageResource(R.drawable.ic_action_new);
         addButton.setBackgroundColor(Color.TRANSPARENT);
         addButton.setVisibility(GONE);
         addButton.setOnClickListener(new OnClickListener() {
