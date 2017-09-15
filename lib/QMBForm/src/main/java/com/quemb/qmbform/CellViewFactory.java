@@ -43,6 +43,7 @@ import com.quemb.qmbform.view.FormSelectorSegmentedControlFieldCell;
 import com.quemb.qmbform.view.FormSelectorSegmentedControlInlineFieldCell;
 import com.quemb.qmbform.view.FormSpinnerFieldCell;
 import com.quemb.qmbform.view.FormSpinnerInlineFieldCell;
+import com.quemb.qmbform.view.FormTextLabelFieldCell;
 import com.quemb.qmbform.view.FormTextPickerDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeInlineFieldCell;
@@ -119,7 +120,7 @@ public class CellViewFactory {
         mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeSectionSeperator, SeparatorSectionCell.class);
         mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeHtmlVertical, FormDetailHtmlTextVerticalFieldCell.class);
 
-        mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeTextField, FormTitleFieldCell.class);
+        mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeTextField, FormTextLabelFieldCell.class);
     }
 
     public Cell createViewForFormItemDescriptor(Context context, FormItemDescriptor descriptor) {
