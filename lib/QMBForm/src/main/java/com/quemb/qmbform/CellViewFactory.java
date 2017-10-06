@@ -36,6 +36,7 @@ import com.quemb.qmbform.view.FormEditTextViewFieldCell;
 import com.quemb.qmbform.view.FormEditTextViewInlineFieldCell;
 import com.quemb.qmbform.view.FormEditURLFieldCell;
 import com.quemb.qmbform.view.FormExternalButtonFieldCell;
+import com.quemb.qmbform.view.FormImageFieldCell;
 import com.quemb.qmbform.view.FormIntegerSliderFieldCell;
 import com.quemb.qmbform.view.FormPickerDialogFieldCell;
 import com.quemb.qmbform.view.FormPickerDialogVerticalFieldCell;
@@ -47,7 +48,6 @@ import com.quemb.qmbform.view.FormTextLabelFieldCell;
 import com.quemb.qmbform.view.FormTextPickerDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeDialogFieldCell;
 import com.quemb.qmbform.view.FormTimeInlineFieldCell;
-import com.quemb.qmbform.view.FormTitleFieldCell;
 import com.quemb.qmbform.view.SectionCell;
 import com.quemb.qmbform.view.SectionFooterCell;
 import com.quemb.qmbform.view.SeparatorSectionCell;
@@ -121,6 +121,7 @@ public class CellViewFactory {
         mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeHtmlVertical, FormDetailHtmlTextVerticalFieldCell.class);
 
         mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeTextField, FormTextLabelFieldCell.class);
+        mViewRowTypeMap.put(RowDescriptor.FormRowDescriptorTypeImage, FormImageFieldCell.class);
     }
 
     public Cell createViewForFormItemDescriptor(Context context, FormItemDescriptor descriptor) {
