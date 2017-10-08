@@ -79,6 +79,7 @@ public class RowDescriptor<T> extends FormItemDescriptor {
      * A list of valid values to pick from (e.g. used for spinners)
      */
     private DataSource<T> mDataSource;
+    private ImageDelegate mImageDelegate;
     private Boolean mRequired = false;
     private Boolean mDisabled = false;
 
@@ -184,6 +185,18 @@ public class RowDescriptor<T> extends FormItemDescriptor {
 
     public void setDataSource(DataSource<T> dataSource) {
         mDataSource = dataSource;
+    }
+
+    public boolean hasImageDelegate() {
+        return mImageDelegate != null;
+    }
+
+    public ImageDelegate getImageDelegate() {
+        return mImageDelegate;
+    }
+
+    public void setImageDelegate(ImageDelegate imageDelegate) {
+        mImageDelegate = imageDelegate;
     }
 
     public Boolean getDisabled() {

@@ -14,6 +14,7 @@ public class SectionDescriptor extends FormItemDescriptor {
     private Boolean mMultivalueSection = false;
     private Boolean mCanAddValue = true;
     private String mFooterTitle = null;
+    private MultiValueDelegate mMultiValueDelegate;
 
     public static SectionDescriptor newInstance(String tag) {
 
@@ -94,6 +95,9 @@ public class SectionDescriptor extends FormItemDescriptor {
                 getFormDescriptor().didInsertRow(row, this);
             }
 
+            if (mMultiValueDelegate != null) {
+                mMultiValueDelegate.onAddedRow(row);
+            }
         }
     }
 
@@ -134,6 +138,10 @@ public class SectionDescriptor extends FormItemDescriptor {
 
     public void setMultivalueSection(Boolean multivalueSection) {
         mMultivalueSection = multivalueSection;
+    }
+
+    public void setmMultiValueDelegate(MultiValueDelegate delegate) {
+        mMultiValueDelegate = delegate;
     }
 
     public void setCanAddValue(Boolean mCanAddValue) {

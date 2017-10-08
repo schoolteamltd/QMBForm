@@ -1,18 +1,25 @@
 package com.quemb.qmbform.view;
 
 import android.content.Context;
-import android.widget.TextView;
+import android.net.Uri;
+import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.quemb.qmbform.R;
-import com.quemb.qmbform.descriptor.CellDescriptor;
+import com.quemb.qmbform.descriptor.ImageDelegateListener;
 import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.Value;
+
+import java.io.File;
 
 /**
  * Created by joshua on 6/10/2017.
  */
 
-public class FormImageFieldCell extends FormBaseCell {
-	private TextView mTextView;
+public class FormImageFieldCell extends FormTitleFieldCell {
+	private ImageView mImageView;
+
+	private ImageLoader imageLoader;
 
 	public FormImageFieldCell(Context context, RowDescriptor rowDescriptor) {
 		super(context, rowDescriptor);
@@ -21,31 +28,53 @@ public class FormImageFieldCell extends FormBaseCell {
 	@Override
 	protected void init() {
 		super.init();
-		mTextView = (TextView) findViewById(R.id.textView);
+		imageLoader = ImageLoader.getInstance();
 
-		setStyleId(mTextView, CellDescriptor.APPEARANCE_TEXT_LABEL, CellDescriptor.COLOR_LABEL);
+		mImageView = (ImageView) findViewById(R.id.imageView);
+		mImageView.setOnClickListener(this);
 	}
 
 	@Override
 	protected int getResource() {
-		return R.layout.text_field_cell;
+		return R.layout.image_field_cell;
 	}
 
 	@Override
 	protected void update() {
-		String title = getFormItemDescriptor().getTitle();
-		mTextView.setText(title);
-		mTextView.setVisibility(title == null ? GONE : VISIBLE);
+		super.update();
 
-
-		if (getRowDescriptor().getDisabled()) {
-			getRowDescriptor().setOnFormRowClickListener(null);
-
-			setTextColor(mTextView, CellDescriptor.COLOR_LABEL_DISABLED);
+		if (getRowDescriptor().getValue() != null) {
+			@SuppressWarnings("unchecked") Value<String> value = (Value<String>) getRowDescriptor().getValue();
+			if (value != null && value.getValue() != null) {
+				String valueString = value.getValue();
+				if (imageLoader != null) {
+					if (valueString.startsWith("http")) {
+						imageLoader.displayImage(valueString, mImageView);
+					} else {
+						imageLoader.displayImage(Uri.fromFile(new File(valueString)).toString(), mImageView);
+					}
+				}
+			}
 		}
 	}
 
-	public TextView getTextView() {
-		return mTextView;
+	@Override
+	public void onCellSelected() {
+		super.onCellSelected();
+
+		if (getRowDescriptor().getDisabled()) {
+			return;
+		}
+
+		if (getRowDescriptor().hasImageDelegate()) {
+			getRowDescriptor().getImageDelegate().pickImage(new ImageDelegateListener() {
+				@Override
+				public void onPickImage(String path) {
+					onValueChanged(new Value<String>(path));
+					imageLoader.displayImage(Uri.fromFile(new File(path)).toString(), mImageView);
+				}
+			});
+		}
+
 	}
 }
