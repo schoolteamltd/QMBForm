@@ -7,7 +7,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -47,14 +47,14 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'info.hoang8f:android-segmented:1.0.5'
-    compile 'com.wdullaer:materialdatetimepicker:2.5.0'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.hamcrest:hamcrest-core:1.2.1'
-    testCompile 'org.robolectric:robolectric:3.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'info.hoang8f:android-segmented:1.0.5'
+    implementation 'com.wdullaer:materialdatetimepicker:2.5.0'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.hamcrest:hamcrest-core:1.2.1'
+    testImplementation 'org.robolectric:robolectric:3.0'
 }
 
 apply plugin: 'idea'
@@ -96,7 +96,7 @@ task jacocoTestReport(type: JacocoReport ) {
     description = "Generates Jacoco coverage reports: XML and HTML"
     group = "Reporting"
 
-    jacocoClasspath = project.configurations['androidJacocoAnt']
+    jacocoClasspath = project.configurations['jacocoAnt']
 
     def fileFilter = ['**/R.class',
                       '**/R$*.class',
