@@ -48,7 +48,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'info.hoang8f:android-segmented:1.0.5'
     implementation 'com.wdullaer:materialdatetimepicker:2.5.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
@@ -107,10 +107,6 @@ task jacocoTestReport(type: JacocoReport ) {
 
     def debugTree = fileTree(dir: "${project.buildDir}/intermediates/classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: project.projectDir, includes: ['**/*.exec', '**/*.ec'])
 
     reports {
         xml {
