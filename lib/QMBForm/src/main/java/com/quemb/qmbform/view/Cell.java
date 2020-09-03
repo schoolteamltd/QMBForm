@@ -3,8 +3,10 @@ package com.quemb.qmbform.view;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.annotation.StyleRes;
-import androidx.core.app.FragmentActivity;
+
+import androidx.annotation.StyleRes;
+import androidx.fragment.app.FragmentActivity;
+
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
